@@ -10,30 +10,89 @@ class Node:
 
 @dataclass
 class doubly_Ordered_List:
+    head : None
+    tail : None
 
     """
     A doubly-linked ordered list of items, from lowest (head of list) to highest (tail of list)
     """
 
-    def is_empty(self):
+       def is_empty(self):
         """Returns True if OrderedList is empty
         MUST have O(1) performance"""
-        pass
+        if self.head == None:
+            return True
+        return False
 
-    def add(self, item):
+
+    def add(self, item, head):
         """Adds an item to OrderedList, in the proper location based on ordering of items
         from lowest (at head of list) to highest (at tail of list) and returns True.
         If the item is already in the list, do not add it again and return False.
         MUST have O(n) average-case performance"""
-        pass
+        if self is not None:
+            current_node = head
+            #if item exists already
+            if current_node == item:
+                return False
+            #if the item should become head
 
-    def remove(self, item):
+            if self.head > item:
+                item.next_node = self.head
+                self.current_node.prev_node = item
+                self.head = item
+                return True
+            #if item should become tail
+            if current_node == self.tail:
+                current_node.next_node = item
+                item.prev_node = current_node
+                self.tail = item
+                return True
+            #if item goes in middle of list
+            if current_node.next_node > item:
+                item.prev_node = current_node
+                item.next_node = current_node.next_node
+                current_node.next_node.prev_node = item
+                current_node.next_node = item
+                return True
+
+            return(add(self, item, current_node.next_node))
+        else:
+            self.head = item
+            self.tail = item
+            return True
+
+
+
+
+
+    def remove(self, item, head):
         """Removes the first occurrence of an item from OrderedList. If item is removed (was
         in the list)
         returns True.  If item was not removed (was not in the list) returns False
         MUST have O(n) average-case performance"""
-        pass
-
+        if self is not None:
+            current_node = head
+            if current_node == item:
+                #if item is head
+                if current_node.prev_node is None:
+                    self.head = current_node.next_node
+                    current_node.next_node.prev_node = None
+                   
+                #if item is tail
+                elif current_node.next_node is None:
+                    current_node.prev_node.next_node = None
+                    self.tail = current_node.prev_node
+                    
+                #if item is in middle
+                else:
+                    current_node.prev_node.next_node = current_node.next_node
+                    current_node.next_node.prev_node = current_node.prev_node
+                return True
+            return(remove(self, item, current_node.next_node))
+        else:
+            #if list is empty
+            return False
     def index(self, item):
         """Returns index of the first occurrence of an item in OrderedList (assuming head of
         list is index 0).
