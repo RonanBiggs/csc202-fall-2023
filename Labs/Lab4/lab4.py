@@ -98,10 +98,12 @@ for i in MH.list:
     stored internal to the heap.
     (This may be useful for in testing your implementation.)"""
 
-    def contents(self):
-        list = []
-        self.in_order_recursive(self.root)
-        return list
+     def contents(self):
+     for i in self.list:
+         if i is not None:
+             print(i.item)
+         else:
+             print(i)
 
     def in_order_recursive(self, current_node):
         if current_node is not None:
