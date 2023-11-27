@@ -1,25 +1,84 @@
 from dataclasses import dataclass
 
+   
 
-@dataclass
-class TreeNode:
-    value: int = None
-    left_child: "TreeNode" = None
-    right_child: "TreeNode" = None
+class Node:
+    item = None
+    index = None
+    left_child = None
+    right_child = None
 
+    def __init__(self, item):
+        self.item = item
 
-@dataclass
 class MaxHeap:
-    root: "TreeNode" = None
+    list = [None]*256
+    root = None
 
-    """inserts "item" into the heap, returns true if successful, false
-        if there is no room in the heap
-        "item" can be any primitive or ***object*** that can be
-        compared with other
-        items using the < operator"""
 
+
+
+    '''inserts "item" into the heap, returns true if successful, false
+if there is no room in the heap
+"item" can be any primitive or ***object*** that can be
+compared with other
+items using the < operator'''
     def enqueue(self, item):
-        pass
+        new_node = Node(item)
+        if self.list[255] is not None: #heap is full
+            return False
+        if self.root is None: #heap is empty
+            self.root = new_node
+            self.list[0] = new_node
+            new_node.index = 0
+            return True
+        for i in range(len(self.list)):
+            if self.list[i] is None:
+                self.list[i] = new_node
+                new_node.index = i
+
+                #if its even meaning right node
+                if i % 2 == 0:
+                    self.list[int(i-1/2)].right_child = new_node
+                    #if its odd meaning left node
+                else:
+                    self.list[int(i - 1 / 2)].left_child = new_node
+                break
+
+
+        self._enqueue_reorder(self, new_node)
+
+        #find where to put node
+    def _enqueue_reorder(self, new_node):
+        while new_node.item > self.list[int(new_node.index - 1 / 2)].item:
+            self.swap(self, new_node, self.list[int(new_node.index - 1 / 2)])
+
+
+    def swap(self, node1, node2):
+        self.list[node1.index], self.list[node2.index] = self.list[node2.index], self.list[node1.index]
+        node1.index, node2.index = node2.index, node1.index
+        if self.list[node1.index*2] is not None:
+            node1.left_child = self.list[node1.index*2]
+        if self.list[node1.index*2+1] is not None:
+            node1.right_child = self.list[node1.index*2+1]
+        if self.list[node2.index*2] is not None:
+            node1.left_child = self.list[node2.index*2]
+        if self.list[node2.index*2+1] is not None:
+            node1.right_child = self.list[node2.index*2+1]
+
+MH = MaxHeap
+MH.enqueue(MH, 5)
+MH.enqueue(MH, 62)
+MH.enqueue(MH, 61)
+MH.enqueue(MH, 2)
+MH.enqueue(MH, 12)
+for i in MH.list:
+    if i is not None:
+        print(i.item)
+    else:
+        print(i)
+
+
 
     """returns max without changing the heap, returns None if the heap is empty"""
 
