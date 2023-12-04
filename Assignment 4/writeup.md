@@ -3,33 +3,21 @@ Project 4
 
 # Team Members:
 
-- George Washington
-- Martin Luther King, Jr.
-- John Lewis
-- Anne of Cleves
+- Ronan Biggs
+- Adan
+- Christian
 
 # Expected Data Structures
 
-Lorem ipsum dolor sit amet, corpora necessitatibus ius ut, ad mea postea
-tritani alienum. Quo diceret temporibus ad. Ad his sint impetus
-necessitatibus. Mutat prodesset voluptaria sea te.
-
-Nullam eruditi vix an. Mei tale verterem constituto id. Et persius
-mediocrem quaerendum quo, at eam porro munere euismod. Ea dicat sonet
-reprimique nam, oporteat dignissim disputando pro ut. Usu platonem
-constituto cu, fuisset fierent id pri. Mea in dicat fuisset elaboraret,
-ad nam partem tempor persius. Ne qui dolorum platonem partiendo.
-
-Ius solet interesset ad. Qui quem abhorreant in, utamur evertitur
-deseruisse eam in. At velit quando ius. Mel primis tractatos explicari
-ut, vel at quodsi delenit qualisque. Noluisse perpetua interesset sit
-ea. At suas ceteros qui, ad assueverit referrentur sea.
-
-Vero pericula cu cum, has ut errem persius, constituto concludaturque ex
-his. Eu duo augue nominavi. Vim quem detraxit te, sed ea iusto appetere
-constituam. Ut duo sonet possit civibus, clita ullamcorper duo at, eos
-cu alii porro. Ad aperiam singulis tacimates ius, in vis tollit aperiam
-corpora. Modus audiam abhorreant nec ea, quo ferri nonumy fierent et.
+  Coverage.py is used to keep track of what lines of code have ran; Therefore the 
+  needed data structures will likely be for the purpose of keeping track of the lines 
+  run in the test suite. After discussing a binary tree or hash table were the most likely 
+  data structures we came up with. A self-balancing binary tree such as a red-black tree would 
+  be efficient for inserting which lines have run, and staying ordered to prevent duplicates. 
+  A hash table would also work well. It could quickly find if a line of code specified by the 
+  user ran and how many times. However, due to collisions this structure may not be as efficient 
+  as a tree-like data structure.
+  
 
 # Initial Code Examination
 
